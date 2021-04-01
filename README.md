@@ -5,7 +5,7 @@ A tiny logger intended for browsers and space-constrained applications.
 ## Basic Usage
 
 ```javascript
-import { Logger } from '@cloud-sugar/browser-logger';
+import { Logger } from '@cloudsugar/browser-logger';
 
 const logger = new Logger({name: 'App', level: 'info'});
 
