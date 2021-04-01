@@ -1,13 +1,15 @@
 {
-  "name": "browser-logger",
+  "name": "@cloudsugar/browser-logger",
   "version": "1.0.0",
   "description": "A tiny, opinionated console logger for browsers.",
   "main": "lib/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "npx tsc",
     "build:watch": "npm run --silent build -- --watch",
     "format": "npx prettier --write src",
     "lint": "npx eslint src --ext .js,.jsx,.ts,.tsx",
+    "prepublishOnly": "npm test && npm run --silent build",
     "test": "npx jest"
   },
   "author": "Craig Younker <cyounker@cloudsugar.net>",
@@ -30,5 +32,22 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloud-sugar/browser-logger.git"
+  },
+  "keywords": [
+    "cloudsugar",
+    "browser",
+    "logger"
+  ],
+  "bugs": {
+    "url": "https://github.com/cloud-sugar/browser-logger/issues"
+  },
+  "homepage": "https://github.com/cloud-sugar/browser-logger#readme"
 }
