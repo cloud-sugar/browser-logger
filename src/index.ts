@@ -26,6 +26,16 @@ interface Message {
 
 type Callback = () => void;
 
+/**
+ * The default formatting function
+ *
+ * @param {Date} message.date - The message time
+ * @param {Level} message.level - The message level
+ * @param {string} message.name - The logger name
+ * @param {any[]=} message.content - The message arguments (e.g. text, JSON)
+ *
+ * @returns An array of arguments that are forwarded to the Logger stream
+ */
 function format({ date, level, name, content }: Message): any[] {
   const ts = date.toISOString();
   return [`${ts} [${level.toUpperCase()}] ${name}:`, ...content];
