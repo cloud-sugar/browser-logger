@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A tiny, opinionated console logger for browsers.",
   "main": "lib/index.js",
-  "types": "dist/index.d.ts",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "npx tsc",
     "build:watch": "npm run --silent build -- --watch",
