@@ -9,6 +9,7 @@
     "build:watch": "npm run --silent build -- --watch",
     "format": "npx prettier --write src",
     "lint": "npx eslint src --ext .js,.jsx,.ts,.tsx",
+    "packlist": "npx npm-packlist",
     "prepublishOnly": "npm test && npm run --silent build",
     "test": "npx jest"
   },
@@ -23,6 +24,7 @@
     "eslint-plugin-jest": "24.3.2",
     "husky": "6.0.0",
     "jest": "26.6.3",
+    "npm-packlist": "2.1.5",
     "prettier": "2.2.1",
     "pretty-quick": "3.1.0",
     "ts-jest": "26.5.4",
