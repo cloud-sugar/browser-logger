@@ -1,4 +1,4 @@
-export type Level = 'debug' | 'info' | 'warn' | 'error' | 'fatal';
+export type Level = 'debug' | 'info' | 'warn' | 'error' | 'fatal' | 'silent';
 
 export interface Stream {
   readonly debug: (args?: any[]) => void;
@@ -65,7 +65,7 @@ function format({ date, level, name, content }: Message): any[] {
  * });
  */
 export class Logger {
-  private static levels: string[] = ['debug', 'info', 'warn', 'error', 'fatal'];
+  private static levels: string[] = ['debug', 'info', 'warn', 'error', 'fatal', 'silent'];
   private name: Required<Config>['name'];
   private level: Required<Config>['level'];
   private format: Required<Config>['format'];
