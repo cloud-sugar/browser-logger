@@ -1,7 +1,7 @@
 import { Level, Logger, Stream, StreamLevel } from './index';
 
 describe('Logger', () => {
-  let stream: Stream = {
+  const stream: Stream = {
     debug: jest.fn(),
     info: jest.fn(),
     log: jest.fn(),

@@ -176,8 +176,6 @@ export class Logger {
     try {
       this.stream.group(label);
       callback();
-    } catch (e) {
-      throw e;
     } finally {
       this.stream.groupEnd();
     }
