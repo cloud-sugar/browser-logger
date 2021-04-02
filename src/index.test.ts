@@ -1,13 +1,12 @@
-import { Level, Logger } from './index';
+import { Level, Logger, Stream, StreamLevel } from './index';
 
 describe('Logger', () => {
-  let stream: Record<string, any> = {
+  let stream: Stream = {
     debug: jest.fn(),
     info: jest.fn(),
     log: jest.fn(),
     warn: jest.fn(),
     error: jest.fn(),
-    fatal: jest.fn(),
     group: jest.fn(),
     groupEnd: jest.fn(),
   };
@@ -49,10 +48,11 @@ describe('Logger', () => {
   `(
     'should not write when logger level is "$loggerLevel" and message level is "$messageLevel"',
     ({ loggerLevel, messageLevel, expected }) => {
-      const logger: any = new Logger({ level: loggerLevel, stream });
-      logger[messageLevel]('test');
-      const streamFn = levelToStreamFunc[messageLevel] || messageLevel;
-      const actual = stream[streamFn].mock.calls.length > 0;
+      const logger = new Logger({ level: loggerLevel, stream });
+      logger[messageLevel as StreamLevel]('test');
+      const fnName = (levelToStreamFunc[messageLevel] || messageLevel) as StreamLevel;
+      const fn = stream[fnName] as ReturnType<typeof jest.fn>;
+      const actual = fn.mock.calls.length > 0;
       expect(actual).toEqual(expected);
     }
   );
@@ -65,9 +65,10 @@ describe('Logger', () => {
     ${'error'}
     ${'fatal'}
   `('should not write when message level is "$messageLevel"', ({messageLevel}) => {
-    const logger: any = new Logger({ level: 'silent', stream});
-    logger[messageLevel]('test');
-    const streamFn = levelToStreamFunc[messageLevel] || messageLevel;
-    expect(stream[streamFn].mock.calls.length).toEqual(0);
+    const logger = new Logger({ level: 'silent', stream});
+    logger[messageLevel as StreamLevel]('test');
+    const fnName = (levelToStreamFunc[messageLevel] || messageLevel) as StreamLevel;
+    const fn = stream[fnName] as ReturnType<typeof jest.fn>;
+    expect(fn.mock.calls.length).toEqual(0);
   });
 });

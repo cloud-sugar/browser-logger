@@ -1,4 +1,5 @@
-export type Level = 'debug' | 'info' | 'warn' | 'error' | 'fatal' | 'silent';
+export type StreamLevel = 'debug' | 'info' | 'warn' | 'error';
+export type Level = StreamLevel | 'fatal' | 'silent';
 
 export interface Stream {
   readonly debug: (args?: any[]) => void;
@@ -63,9 +64,13 @@ function format({ date, level, name, content }: Message): any[] {
  *   logger.info('here we go');
  *   logger.info('one more time');
  * });
+ *
+ * @example <caption>Silenced Logger</caption>
+ * const logger = new Logger({name: 'App', level: 'silent'});
+ * logger.fatal('this message will be ignored');
  */
 export class Logger {
-  private static levels: string[] = ['debug', 'info', 'warn', 'error', 'fatal', 'silent'];
+  private static levels: Level[] = ['debug', 'info', 'warn', 'error', 'fatal', 'silent'];
   private name: Required<Config>['name'];
   private level: Required<Config>['level'];
   private format: Required<Config>['format'];
@@ -97,7 +102,7 @@ export class Logger {
     this.stream = config.stream || console;
   }
 
-  private shouldDisplay(level: string): boolean {
+  private shouldDisplay(level: Level): boolean {
     return Logger.levels.indexOf(level) >= Logger.levels.indexOf(this.level);
   }
 
@@ -110,7 +115,7 @@ export class Logger {
         content: args,
       };
       const formattedMessage = this.format(message);
-      const streamFuncName = level === 'fatal' ? 'error' : level;
+      const streamFuncName = (level === 'fatal' ? 'error' : level) as StreamLevel;
       this.stream[streamFuncName](...formattedMessage);
     }
   }
