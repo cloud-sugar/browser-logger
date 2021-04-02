@@ -1,6 +1,6 @@
 {
   "name": "@cloudsugar/browser-logger",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A tiny logger intended for browsers and space-constrained applications.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
