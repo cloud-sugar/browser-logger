@@ -23,7 +23,7 @@ logger.fatal('everything is bad');
 logger.info('response data', data);
 ```
 
-### Message groups
+### Message Groups
 ```javascript
 logger.group('starting group', () => {
   logger.info('here we go');
